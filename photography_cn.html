@@ -197,28 +197,32 @@
 				letter-spacing: 0.05em;
 			}
 
-			/* 瀑布流画廊 */
+			/* 瀑布流画廊（横向排列：从左至右） */
 			.gallery {
-				column-count: 4;
-				column-gap: 12px;
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				grid-auto-rows: 8px;
+				grid-auto-flow: row dense;
+				gap: 12px;
 				padding: 0 20px 60px;
 				max-width: 1800px;
 				margin: 0 auto;
 			}
-			@media (max-width: 1400px) { .gallery { column-count: 3; } }
-			@media (max-width: 900px)  { .gallery { column-count: 2; padding: 0 12px 40px; } }
-			@media (max-width: 520px)  { .gallery { column-count: 1; } }
+			@media (max-width: 1400px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+			@media (max-width: 900px)  { .gallery { grid-template-columns: repeat(2, 1fr); padding: 0 12px 40px; } }
+			@media (max-width: 520px)  { .gallery { grid-template-columns: 1fr; } }
 
 			.gallery .photo {
 				width: 100%;
-				margin-bottom: 12px;
+				height: auto;
 				display: block;
-				break-inside: avoid;
 				cursor: zoom-in;
 				border-radius: 4px;
-				transition: opacity 0.35s ease, transform 0.35s ease;
+				background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+				min-height: 80px;
+				transition: opacity 0.4s ease, transform 0.4s ease, filter 0.25s ease;
 				opacity: 0;
-				transform: translateY(10px);
+				transform: translateY(12px);
 				-webkit-user-drag: none;
 				-khtml-user-drag: none;
 				-moz-user-drag: none;
@@ -239,7 +243,7 @@
 				display: none;
 				position: fixed;
 				top: 0; left: 0; right: 0; bottom: 0;
-				background-color: rgba(0, 0, 0, 0.95);
+				background-color: rgba(0, 0, 0, 0);
 				z-index: 10000;
 				align-items: center;
 				justify-content: center;
@@ -247,11 +251,14 @@
 			}
 			.lightbox.active {
 				display: flex;
-				animation: fadeIn 0.25s ease;
 			}
-			@keyframes fadeIn {
-				from { opacity: 0; }
-				to { opacity: 1; }
+			.lightbox.fade-in {
+				background-color: rgba(0, 0, 0, 0.95);
+				transition: background-color 0.35s ease;
+			}
+			.lightbox.fade-out {
+				background-color: rgba(0, 0, 0, 0);
+				transition: background-color 0.3s ease;
 			}
 			.lightbox img {
 				max-width: 95vw;
@@ -261,6 +268,17 @@
 				-webkit-user-drag: none;
 				user-drag: none;
 				pointer-events: none;
+				will-change: transform;
+				transform-origin: center center;
+			}
+			.lightbox .close-btn,
+			.lightbox .counter {
+				opacity: 0;
+				transition: opacity 0.3s ease 0.1s;
+			}
+			.lightbox.fade-in .close-btn,
+			.lightbox.fade-in .counter {
+				opacity: 1;
 			}
 			.lightbox .close-btn {
 				position: absolute;
@@ -410,7 +428,19 @@
 				const closeBtn = document.getElementById('closeLightbox');
 				const counter = document.getElementById('lightboxCounter');
 
-				// 构建画廊（按文件名倒序：169 → 1）
+				const BASE_ROW = 8;
+				const GAP = 12;
+
+				function setRowSpan(img) {
+					if (!img.naturalWidth) return;
+					const colWidth = img.offsetWidth;
+					if (!colWidth) return;
+					const renderedHeight = colWidth * (img.naturalHeight / img.naturalWidth);
+					const span = Math.ceil((renderedHeight + GAP) / (BASE_ROW + GAP));
+					img.style.gridRowEnd = 'span ' + span;
+				}
+
+				// 构建画廊（按文件名倒序 169 → 1，整体横向排列）
 				for (let i = TOTAL_PHOTOS; i >= 1; i--) {
 					const src = PATH + i + EXT;
 					const img = document.createElement('img');
@@ -421,6 +451,7 @@
 					img.draggable = false;
 					img.dataset.index = i;
 					img.addEventListener('load', function () {
+						setRowSpan(img);
 						img.classList.add('loaded');
 					});
 					img.addEventListener('error', function () {
@@ -434,6 +465,15 @@
 					});
 					gallery.appendChild(img);
 				}
+
+				// 窗口尺寸变化时重新计算行跨度
+				let resizeTimer;
+				window.addEventListener('resize', function () {
+					clearTimeout(resizeTimer);
+					resizeTimer = setTimeout(function () {
+						gallery.querySelectorAll('img.photo').forEach(setRowSpan);
+					}, 150);
+				});
 
 				function openLightbox(src, index) {
 					lightboxImg.src = src;
