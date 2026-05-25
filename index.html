@@ -33,23 +33,25 @@
 				background-size: cover;
 				background-position: left;
 			}
+			.lang-switch-wrap {
+				text-align: center;
+				margin-top: 2em;
+			}
 			.lang-switch {
-				position: fixed;
-				top: 20px;
-				right: 20px;
-				z-index: 9999;
-				padding: 8px 20px;
+				display: inline-block;
+				padding: 10px 28px;
 				background-color: rgba(0, 0, 0, 0.55);
 				color: #ffffff !important;
 				border-radius: 24px;
 				text-decoration: none !important;
-				font-size: 0.95em;
+				font-size: 1em;
 				font-weight: 600;
-				border: 1px solid rgba(255, 255, 255, 0.6);
+				letter-spacing: 0.05em;
+				border: 1px solid rgba(255, 255, 255, 0.7);
 				backdrop-filter: blur(6px);
 				-webkit-backdrop-filter: blur(6px);
 				transition: all 0.25s ease;
-				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 			}
 			.lang-switch:hover {
 				background-color: rgba(255, 255, 255, 0.95);
@@ -60,9 +62,6 @@
 
 	</head>
 	<body class="is-preload">
-
-		<!-- Language Switcher -->
-			<a href="index_cn.html" class="lang-switch" title="切换到中文">中文版</a>
 
 		<!-- Sidebar -->
 			<section id="sidebar">
@@ -88,6 +87,9 @@
 					<section id="cover" class="wrapper style2 fullscreen fade-up coversec">
 						<div class="inner coverdiv" >
 							<h1 style="color: #ffffff; text-align: center; text-transform: uppercase;">TECHNOLOGY, ART, AND COMPASSION</h1>
+							<div class="lang-switch-wrap">
+								<a href="index_cn.html" class="lang-switch" title="切换到中文">中文版</a>
+							</div>
 						</div>
 					</section>
 					
