@@ -430,7 +430,14 @@
 
 				const BASE_ROW = 8;
 				const GAP = 12;
+				const DEFAULT_SPAN = 18;          // 占位符高度（图片未加载前）
+				const OPEN_DURATION = 400;
+				const CLOSE_DURATION = 320;
 
+				let sourceRect = null;
+				let isAnimating = false;
+
+				// ===== 根据真实长宽比计算行跨度 =====
 				function setRowSpan(img) {
 					if (!img.naturalWidth) return;
 					const colWidth = img.offsetWidth;
@@ -440,16 +447,34 @@
 					img.style.gridRowEnd = 'span ' + span;
 				}
 
-				// 构建画廊（按文件名倒序 169 → 1，整体横向排列）
+				// ===== 按需加载 (IntersectionObserver) =====
+				const lazyObserver = new IntersectionObserver(function (entries) {
+					entries.forEach(function (entry) {
+						if (entry.isIntersecting) {
+							const img = entry.target;
+							const realSrc = img.dataset.src;
+							if (realSrc) {
+								img.src = realSrc;
+								delete img.dataset.src;
+								lazyObserver.unobserve(img);
+							}
+						}
+					});
+				}, {
+					rootMargin: '400px 0px',
+					threshold: 0
+				});
+
+				// ===== 构建画廊（按文件名倒序 169 → 1，整体横向排列） =====
 				for (let i = TOTAL_PHOTOS; i >= 1; i--) {
 					const src = PATH + i + EXT;
 					const img = document.createElement('img');
-					img.src = src;
+					img.dataset.src = src;          // 延迟加载真实 src
 					img.alt = '孙浩摄影作品 ' + i;
 					img.className = 'photo';
-					img.loading = 'lazy';
 					img.draggable = false;
 					img.dataset.index = i;
+					img.style.gridRowEnd = 'span ' + DEFAULT_SPAN;
 					img.addEventListener('load', function () {
 						setRowSpan(img);
 						img.classList.add('loaded');
@@ -458,12 +483,15 @@
 						img.remove();
 					});
 					img.addEventListener('click', function () {
-						openLightbox(src, i);
+						if (img.naturalWidth) {
+							openLightbox(img, img.src, parseInt(img.dataset.index, 10));
+						}
 					});
 					img.addEventListener('contextmenu', function (e) {
 						e.preventDefault();
 					});
 					gallery.appendChild(img);
+					lazyObserver.observe(img);
 				}
 
 				// 窗口尺寸变化时重新计算行跨度
@@ -475,17 +503,87 @@
 					}, 150);
 				});
 
-				function openLightbox(src, index) {
-					lightboxImg.src = src;
+				// ===== 灯箱：FLIP 风格的放大 / 缩小动画 =====
+				function playOpenAnimation() {
+					const targetRect = lightboxImg.getBoundingClientRect();
+					if (!targetRect.width || !targetRect.height || !sourceRect) {
+						isAnimating = false;
+						return;
+					}
+					const scale = sourceRect.width / targetRect.width;
+					const tx = (sourceRect.left + sourceRect.width / 2) - (targetRect.left + targetRect.width / 2);
+					const ty = (sourceRect.top + sourceRect.height / 2) - (targetRect.top + targetRect.height / 2);
+
+					// 起始位置 / 尺寸与缩略图一致
+					lightboxImg.style.transition = 'none';
+					lightboxImg.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) scale(' + scale + ')';
+					lightboxImg.style.opacity = '1';
+
+					// 强制 reflow，然后动画到自然位置（屏幕居中、完整尺寸）
+					void lightboxImg.offsetWidth;
+					lightboxImg.style.transition = 'transform ' + OPEN_DURATION + 'ms cubic-bezier(0.22, 1, 0.36, 1)';
+					lightboxImg.style.transform = 'translate(0, 0) scale(1)';
+					lightbox.classList.add('fade-in');
+
+					setTimeout(function () { isAnimating = false; }, OPEN_DURATION);
+				}
+
+				function openLightbox(thumbnail, src, index) {
+					if (isAnimating) return;
+					isAnimating = true;
+
+					sourceRect = thumbnail.getBoundingClientRect();
 					counter.textContent = index + ' / ' + TOTAL_PHOTOS;
+
+					lightboxImg.style.transition = 'none';
+					lightboxImg.style.transform = '';
+					lightboxImg.style.opacity = '0';
+					lightboxImg.src = src;
 					lightbox.classList.add('active');
+					lightbox.classList.remove('fade-out');
 					document.body.style.overflow = 'hidden';
+
+					if (lightboxImg.complete && lightboxImg.naturalWidth) {
+						requestAnimationFrame(playOpenAnimation);
+					} else {
+						lightboxImg.onload = function () {
+							lightboxImg.onload = null;
+							requestAnimationFrame(playOpenAnimation);
+						};
+					}
 				}
 
 				function closeLightbox() {
+					if (isAnimating || !lightbox.classList.contains('active')) return;
+					isAnimating = true;
+
+					if (sourceRect && lightboxImg.naturalWidth) {
+						const targetRect = lightboxImg.getBoundingClientRect();
+						const scale = sourceRect.width / targetRect.width;
+						const tx = (sourceRect.left + sourceRect.width / 2) - (targetRect.left + targetRect.width / 2);
+						const ty = (sourceRect.top + sourceRect.height / 2) - (targetRect.top + targetRect.height / 2);
+
+						lightboxImg.style.transition = 'transform ' + CLOSE_DURATION + 'ms cubic-bezier(0.4, 0, 0.2, 1)';
+						lightboxImg.style.transform = 'translate(' + tx + 'px, ' + ty + 'px) scale(' + scale + ')';
+						lightbox.classList.remove('fade-in');
+						lightbox.classList.add('fade-out');
+
+						setTimeout(finalizeClose, CLOSE_DURATION);
+					} else {
+						finalizeClose();
+					}
+				}
+
+				function finalizeClose() {
 					lightbox.classList.remove('active');
+					lightbox.classList.remove('fade-out');
+					lightboxImg.style.transition = 'none';
+					lightboxImg.style.transform = '';
+					lightboxImg.style.opacity = '';
 					lightboxImg.src = '';
 					document.body.style.overflow = '';
+					sourceRect = null;
+					isAnimating = false;
 				}
 
 				closeBtn.addEventListener('click', closeLightbox);
