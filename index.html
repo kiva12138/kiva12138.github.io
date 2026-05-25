@@ -33,10 +33,36 @@
 				background-size: cover;
 				background-position: left;
 			}
+			.lang-switch {
+				position: fixed;
+				top: 20px;
+				right: 20px;
+				z-index: 9999;
+				padding: 8px 20px;
+				background-color: rgba(0, 0, 0, 0.55);
+				color: #ffffff !important;
+				border-radius: 24px;
+				text-decoration: none !important;
+				font-size: 0.95em;
+				font-weight: 600;
+				border: 1px solid rgba(255, 255, 255, 0.6);
+				backdrop-filter: blur(6px);
+				-webkit-backdrop-filter: blur(6px);
+				transition: all 0.25s ease;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+			}
+			.lang-switch:hover {
+				background-color: rgba(255, 255, 255, 0.95);
+				color: #000000 !important;
+				border-color: rgba(0, 0, 0, 0.2);
+			}
 		</style>
 
 	</head>
 	<body class="is-preload">
+
+		<!-- Language Switcher -->
+			<a href="index_cn.html" class="lang-switch" title="切换到中文">中文版</a>
 
 		<!-- Sidebar -->
 			<section id="sidebar">
@@ -46,8 +72,6 @@
 							<li><a href="#cover">Research Vision</a></li>
 							<li><a href="#intro">Who I Am</a></li>
 							<li><a href="#publication">Publications</a></li>
-							<!-- <li><a href="#research">Research</a></li> -->
-							<!-- <li><a href="#patents">Patents</a></li> -->
 							<li><a href="#keynotes">Keynotes</a></li>
 							<li><a href="#projects">Projects</a></li>
 							<li><a href="#service">Academic Service</a></li>
