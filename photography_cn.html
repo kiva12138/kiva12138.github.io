@@ -410,8 +410,8 @@
 				const closeBtn = document.getElementById('closeLightbox');
 				const counter = document.getElementById('lightboxCounter');
 
-				// 构建画廊
-				for (let i = 1; i <= TOTAL_PHOTOS; i++) {
+				// 构建画廊（按文件名倒序：169 → 1）
+				for (let i = TOTAL_PHOTOS; i >= 1; i--) {
 					const src = PATH + i + EXT;
 					const img = document.createElement('img');
 					img.src = src;
