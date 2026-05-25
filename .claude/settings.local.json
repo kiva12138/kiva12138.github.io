@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(python -c \"from PIL import Image; im = Image.open\\('d:/kiva12138.github.io/Sun2.png'\\); print\\(im.size, im.mode\\)\")",
-      "Bash(python -c \"from PIL import Image; im = Image.open\\('d:/kiva12138.github.io/photographs/250525 \\(1\\).JPG'\\); print\\(im.size, im.mode\\)\")",
-      "Bash(python watermark.py test --opacity 0.35 --scale 0.18 --position bottom-right)"
-    ]
-  }
-}
