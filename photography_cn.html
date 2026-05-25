@@ -1,0 +1,473 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+	<head>
+		<title>摄影作品集 | 孙浩 Hao Sun</title>
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+		<meta name="author" content="孙浩 Hao Sun">
+		<meta name="keywords" content="孙浩 摄影, Hao Sun photography, 风光摄影, 人像摄影, 摄影作品集, 旅拍, 人像约片, 摄影合作">
+		<meta name="description" content="孙浩（Hao Sun）的个人摄影作品集，擅长风光与人像题材，诚挚欢迎合作邀约。">
+		<meta name="robots" content="index, follow">
+
+		<!-- Open Graph -->
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="摄影作品集 | 孙浩 Hao Sun">
+		<meta property="og:description" content="孙浩的个人摄影作品集，擅长风光与人像，欢迎合作。">
+		<meta property="og:image" content="photographs_watermarked/250525 (1).JPG">
+		<meta property="og:url" content="https://kiva12138.github.io/photography_cn.html">
+		<meta property="og:site_name" content="孙浩 摄影作品集">
+		<meta property="og:locale" content="zh_CN">
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="摄影作品集 | 孙浩 Hao Sun">
+		<meta name="twitter:description" content="擅长风光与人像摄影，欢迎合作邀约。">
+		<meta name="twitter:image" content="photographs_watermarked/250525 (1).JPG">
+
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&amp;family=Noto+Sans+SC:wght@300;400;500;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+		<link rel="icon" href="images/rocket.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="images/rocket.ico" type="image/x-icon">
+
+		<style type="text/css">
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			html, body {
+				width: 100%;
+				overflow-x: hidden;
+			}
+			body {
+				font-family: 'Noto Sans SC', 'Inter', 'Microsoft YaHei', sans-serif;
+				background-color: #0e0e0e;
+				color: #f0f0f0;
+				line-height: 1.8;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				/* 防复制 */
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				-webkit-touch-callout: none;
+			}
+
+			/* 顶部导航 */
+			.nav-bar {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 18px 40px;
+				background-color: #000000;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+				position: sticky;
+				top: 0;
+				z-index: 100;
+			}
+			.nav-bar .brand {
+				font-family: 'Playfair Display', serif;
+				font-size: 1.4em;
+				color: #ffffff;
+				letter-spacing: 0.05em;
+				font-weight: 700;
+			}
+			.nav-bar .actions a {
+				color: #cccccc;
+				text-decoration: none;
+				font-size: 0.92em;
+				margin-left: 24px;
+				letter-spacing: 0.05em;
+				transition: color 0.2s ease;
+			}
+			.nav-bar .actions a:hover {
+				color: #f5b942;
+			}
+
+			/* Hero / 关于 */
+			.hero {
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 100px 30px 70px;
+				text-align: center;
+			}
+			.hero h1 {
+				font-family: 'Playfair Display', 'Noto Sans SC', serif;
+				font-size: 3.2em;
+				font-weight: 700;
+				color: #ffffff;
+				margin-bottom: 0.3em;
+				letter-spacing: 0.05em;
+			}
+			.hero .sub {
+				font-size: 1em;
+				color: #f5b942;
+				letter-spacing: 0.4em;
+				margin-bottom: 2em;
+			}
+			.hero p {
+				font-size: 1.08em;
+				color: #d0d0d0;
+				margin-bottom: 1.4em;
+				text-align: justify;
+			}
+			.hero .specialties {
+				display: flex;
+				justify-content: center;
+				gap: 18px;
+				margin: 36px 0;
+				flex-wrap: wrap;
+			}
+			.hero .specialties span {
+				padding: 8px 28px;
+				border: 1px solid rgba(245, 185, 66, 0.6);
+				border-radius: 24px;
+				color: #f5b942;
+				font-size: 0.95em;
+				letter-spacing: 0.1em;
+			}
+			.hero .cta {
+				margin-top: 30px;
+				display: flex;
+				justify-content: center;
+				gap: 14px;
+				flex-wrap: wrap;
+			}
+			.hero .cta a {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 14px 32px;
+				background-color: #f5b942;
+				color: #0e0e0e;
+				text-decoration: none;
+				font-weight: 600;
+				letter-spacing: 0.12em;
+				border-radius: 30px;
+				transition: all 0.25s ease;
+				font-size: 0.95em;
+				border: 1px solid #f5b942;
+			}
+			.hero .cta a:hover {
+				background-color: #ffffff;
+				border-color: #ffffff;
+				transform: translateY(-2px);
+				box-shadow: 0 8px 20px rgba(245, 185, 66, 0.3);
+			}
+			.hero .cta a.cta-secondary {
+				background-color: transparent;
+				color: #ffffff;
+				border: 1px solid rgba(255, 255, 255, 0.55);
+			}
+			.hero .cta a.cta-secondary:hover {
+				background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+				color: #ffffff;
+				border-color: transparent;
+				box-shadow: 0 8px 20px rgba(220, 39, 67, 0.35);
+			}
+			.hero .cta a i {
+				font-size: 1.1em;
+			}
+
+			.divider {
+				width: 60px;
+				height: 2px;
+				background-color: #f5b942;
+				margin: 0 auto 40px;
+			}
+
+			/* 画廊标题 */
+			.gallery-header {
+				text-align: center;
+				padding: 30px 20px 50px;
+			}
+			.gallery-header h2 {
+				font-family: 'Playfair Display', 'Noto Sans SC', serif;
+				font-size: 2.2em;
+				color: #ffffff;
+				margin-bottom: 0.5em;
+				letter-spacing: 0.05em;
+			}
+			.gallery-header p {
+				color: #999999;
+				font-size: 0.95em;
+				letter-spacing: 0.05em;
+			}
+
+			/* 瀑布流画廊 */
+			.gallery {
+				column-count: 4;
+				column-gap: 12px;
+				padding: 0 20px 60px;
+				max-width: 1800px;
+				margin: 0 auto;
+			}
+			@media (max-width: 1400px) { .gallery { column-count: 3; } }
+			@media (max-width: 900px)  { .gallery { column-count: 2; padding: 0 12px 40px; } }
+			@media (max-width: 520px)  { .gallery { column-count: 1; } }
+
+			.gallery .photo {
+				width: 100%;
+				margin-bottom: 12px;
+				display: block;
+				break-inside: avoid;
+				cursor: zoom-in;
+				border-radius: 4px;
+				transition: opacity 0.35s ease, transform 0.35s ease;
+				opacity: 0;
+				transform: translateY(10px);
+				-webkit-user-drag: none;
+				-khtml-user-drag: none;
+				-moz-user-drag: none;
+				-o-user-drag: none;
+				user-drag: none;
+				pointer-events: auto;
+			}
+			.gallery .photo.loaded {
+				opacity: 1;
+				transform: translateY(0);
+			}
+			.gallery .photo:hover {
+				filter: brightness(1.08);
+			}
+
+			/* 灯箱 */
+			.lightbox {
+				display: none;
+				position: fixed;
+				top: 0; left: 0; right: 0; bottom: 0;
+				background-color: rgba(0, 0, 0, 0.95);
+				z-index: 10000;
+				align-items: center;
+				justify-content: center;
+				padding: 40px;
+			}
+			.lightbox.active {
+				display: flex;
+				animation: fadeIn 0.25s ease;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; }
+				to { opacity: 1; }
+			}
+			.lightbox img {
+				max-width: 95vw;
+				max-height: 90vh;
+				object-fit: contain;
+				box-shadow: 0 10px 50px rgba(0, 0, 0, 0.7);
+				-webkit-user-drag: none;
+				user-drag: none;
+				pointer-events: none;
+			}
+			.lightbox .close-btn {
+				position: absolute;
+				top: 20px;
+				right: 30px;
+				width: 48px;
+				height: 48px;
+				background-color: rgba(255, 255, 255, 0.1);
+				color: #ffffff;
+				font-size: 1.8em;
+				border: 1px solid rgba(255, 255, 255, 0.4);
+				border-radius: 50%;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition: all 0.2s ease;
+				line-height: 1;
+				font-weight: 300;
+			}
+			.lightbox .close-btn:hover {
+				background-color: #ffffff;
+				color: #000000;
+				transform: rotate(90deg);
+			}
+			.lightbox .counter {
+				position: absolute;
+				bottom: 24px;
+				left: 50%;
+				transform: translateX(-50%);
+				color: rgba(255, 255, 255, 0.7);
+				font-size: 0.85em;
+				letter-spacing: 0.1em;
+			}
+
+			/* 页脚 */
+			.footer {
+				text-align: center;
+				padding: 50px 20px 40px;
+				border-top: 1px solid rgba(255, 255, 255, 0.06);
+				color: #777;
+				font-size: 0.85em;
+			}
+			.footer .socials {
+				margin-bottom: 18px;
+			}
+			.footer .socials a {
+				color: #cccccc;
+				margin: 0 10px;
+				font-size: 1.4em;
+				transition: color 0.2s ease;
+			}
+			.footer .socials a:hover {
+				color: #f5b942;
+			}
+			.footer .copy-note {
+				margin-top: 10px;
+				color: #555;
+				font-size: 0.8em;
+			}
+
+			@media (max-width: 700px) {
+				.nav-bar { padding: 14px 18px; }
+				.nav-bar .actions a { margin-left: 14px; font-size: 0.85em; }
+				.hero { padding: 60px 20px 50px; }
+				.hero h1 { font-size: 2.2em; }
+				.hero .sub { font-size: 0.85em; letter-spacing: 0.3em; }
+				.lightbox .close-btn { top: 12px; right: 12px; width: 40px; height: 40px; }
+			}
+		</style>
+
+	</head>
+	<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
+
+		<!-- 顶部导航 -->
+		<nav class="nav-bar">
+			<div class="brand">Hao Sun · Photography</div>
+			<div class="actions">
+				<a href="index_cn.html">← 返回主页</a>
+				<a href="photography.html">EN</a>
+			</div>
+		</nav>
+
+		<!-- Hero / 关于 -->
+		<section class="hero">
+			<h1>镜 中 世 界</h1>
+			<div class="sub">风光 · 人像 · 欢迎合作</div>
+
+			<p>我是<strong>孙浩 (Hao Sun)</strong>，一名人工智能领域的研究者，同时也是一名热爱摄影的影像创作者。在浙江大学从事 AI 研究之外，摄影是我观察世界、记录瞬间的另一种方式——清晨山间的薄雾，人脸上一闪而过的神情，光在寻常事物上停驻的方式。</p>
+
+			<p>我的影像聚焦于<strong>风光</strong>与<strong>人像</strong>。从壮阔山河到细腻人文，我希望用镜头捕捉光影中的美好——对自然耐心等待，对人物用心倾听。</p>
+
+			<div class="specialties">
+				<span>风光摄影</span>
+				<span>人像摄影</span>
+				<span>旅行拍摄</span>
+			</div>
+
+			<p><strong>诚挚欢迎合作。</strong>无论是人像写真、旅拍约片、编辑约稿，还是创意项目，我都欢迎与志同道合的伙伴一同创作。如果我的影像风格与你的设想契合，欢迎随时联系。</p>
+
+			<div class="cta">
+				<a href="mailto:sunhaoxx@foxmail.com?subject=%E6%91%84%E5%BD%B1%E5%90%88%E4%BD%9C%E9%82%80%E7%BA%A6&amp;body=%E6%82%A8%E5%A5%BD%EF%BC%8C%E6%88%91%E6%83%B3%E4%B8%8E%E4%BD%A0%E6%B2%9F%E9%80%9A%E4%B8%80%E6%AC%A1%E6%91%84%E5%BD%B1%E5%90%88%E4%BD%9C%E3%80%82"><i class="fa-solid fa-envelope"></i> 联系 / 邀约合作</a>
+				<a href="https://www.instagram.com/kiva12138/" target="_blank" rel="noopener" class="cta-secondary"><i class="fa-brands fa-instagram"></i> Instagram 关注</a>
+			</div>
+		</section>
+
+		<div class="divider"></div>
+
+		<!-- 画廊标题 -->
+		<section class="gallery-header">
+			<h2>精选作品</h2>
+			<p>点击图片可查看大图。所有作品均添加水印，受版权保护。</p>
+		</section>
+
+		<!-- 瀑布流画廊 -->
+		<section class="gallery" id="gallery" aria-label="摄影作品画廊">
+			<!-- 图片由脚本动态填充 -->
+		</section>
+
+		<!-- 灯箱 -->
+		<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="图片查看器">
+			<button class="close-btn" id="closeLightbox" aria-label="关闭图片">×</button>
+			<img id="lightboxImg" alt="放大查看的摄影作品">
+			<div class="counter" id="lightboxCounter"></div>
+		</div>
+
+		<!-- 页脚 -->
+		<footer class="footer">
+			<div class="socials">
+				<a href="https://www.instagram.com/kiva12138/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+				<a href="mailto:sunhaoxx@foxmail.com" aria-label="邮箱"><i class="fa-solid fa-envelope"></i></a>
+				<a href="https://github.com/kiva12138/" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+			</div>
+			<div>&copy; 2026 孙浩 Hao Sun. 所有作品保留版权，未经授权请勿转载或商用。</div>
+			<div class="copy-note">为保护作品，本页面已禁用右键、拖拽与文本选择。</div>
+		</footer>
+
+		<script>
+			(function () {
+				const TOTAL_PHOTOS = 169;
+				const PATH = 'photographs_watermarked/250525 (';
+				const EXT = ').JPG';
+
+				const gallery = document.getElementById('gallery');
+				const lightbox = document.getElementById('lightbox');
+				const lightboxImg = document.getElementById('lightboxImg');
+				const closeBtn = document.getElementById('closeLightbox');
+				const counter = document.getElementById('lightboxCounter');
+
+				// 构建画廊
+				for (let i = 1; i <= TOTAL_PHOTOS; i++) {
+					const src = PATH + i + EXT;
+					const img = document.createElement('img');
+					img.src = src;
+					img.alt = '孙浩摄影作品 ' + i;
+					img.className = 'photo';
+					img.loading = 'lazy';
+					img.draggable = false;
+					img.dataset.index = i;
+					img.addEventListener('load', function () {
+						img.classList.add('loaded');
+					});
+					img.addEventListener('error', function () {
+						img.remove();
+					});
+					img.addEventListener('click', function () {
+						openLightbox(src, i);
+					});
+					img.addEventListener('contextmenu', function (e) {
+						e.preventDefault();
+					});
+					gallery.appendChild(img);
+				}
+
+				function openLightbox(src, index) {
+					lightboxImg.src = src;
+					counter.textContent = index + ' / ' + TOTAL_PHOTOS;
+					lightbox.classList.add('active');
+					document.body.style.overflow = 'hidden';
+				}
+
+				function closeLightbox() {
+					lightbox.classList.remove('active');
+					lightboxImg.src = '';
+					document.body.style.overflow = '';
+				}
+
+				closeBtn.addEventListener('click', closeLightbox);
+				lightbox.addEventListener('click', function (e) {
+					if (e.target === lightbox) closeLightbox();
+				});
+				document.addEventListener('keydown', function (e) {
+					if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+						closeLightbox();
+					}
+				});
+
+				// 阻止常见复制快捷键
+				document.addEventListener('keydown', function (e) {
+					if (lightbox.classList.contains('active')) {
+						if ((e.ctrlKey || e.metaKey) && ['s', 'c', 'a', 'u'].includes(e.key.toLowerCase())) {
+							e.preventDefault();
+						}
+					}
+				});
+			})();
+		</script>
+
+	</body>
+</html>
