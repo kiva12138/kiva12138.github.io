@@ -420,8 +420,8 @@
 				const closeBtn = document.getElementById('closeLightbox');
 				const counter = document.getElementById('lightboxCounter');
 
-				// Build gallery
-				for (let i = 1; i <= TOTAL_PHOTOS; i++) {
+				// Build gallery (descending by filename: 169 → 1)
+				for (let i = TOTAL_PHOTOS; i >= 1; i--) {
 					const src = PATH + i + EXT;
 					const img = document.createElement('img');
 					img.src = src;
